@@ -1,0 +1,50 @@
+﻿<Window x:Class="PracticalWork.RamWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PracticalWork"
+        mc:Ignorable="d"
+        Title="RamWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Навигационное меню -->
+        <StackPanel Grid.Column="0" Grid.RowSpan="2" Background="#EEE" Margin="5">
+            <TextBlock Text="Меню" FontWeight="Bold" Margin="5"/>
+            <Button Content="Компьютеры" Width="180" Margin="5" />
+            <Button Content="Процессоры" Width="180" Margin="5"/>
+            <Button Content="Видеокарты" Width="180" Margin="5"/>
+            <Button Content="Блоки питания" Width="180" Margin="5"/>
+            <Button Content="Жесткие диски" Width="180" Margin="5"/>
+            <Button Content="ОЗУ" Width="180" Margin="5" IsEnabled="False"/>
+        </StackPanel>
+
+        <!-- Панель с кнопками -->
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10">
+            <Button Content="Добавить" Width="100" Margin="0,0,10,0"/>
+            <Button Content="Удалить" Width="100" Margin="0,0,10,0"/>
+            <Button Content="Редактировать" Width="100" Margin="0,0,10,0"/>
+        </StackPanel>
+
+        <!-- Таблица с данными -->
+        <DataGrid x:Name="InventoryDataGrid" Grid.Column="1" Grid.Row="1" Margin="10" AutoGenerateColumns="False" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Год" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Тип памяти" Binding="{Binding ProcessorId}"/>
+                <DataGridTextColumn Header="Объем памяти" Binding="{Binding GraphicsCardId}"/>
+                <DataGridTextColumn Header="Тактовая частота" Binding="{Binding PowerSupplyId}"/>
+                <DataGridTextColumn Header="Состояние" Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
