@@ -13,7 +13,7 @@ namespace PracticalWork.ViewModels
     public class GraphicsCardViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<GraphicsCard> _graphicsCards;
-        public ObservableCollection<GraphicsCard> GraphicsCard
+        public ObservableCollection<GraphicsCard> GraphicsCards
         {
             get { return _graphicsCards; }
             set
@@ -32,22 +32,22 @@ namespace PracticalWork.ViewModels
         {
             using (var dbContext = new AppDbContext())
             {
-                GraphicsCard = new ObservableCollection<GraphicsCard>(dbContext.GraphicCards.ToList());
+                GraphicsCards = new ObservableCollection<GraphicsCard>(dbContext.GraphicsCards.ToList());
             }
         }
 
         public GraphicsCard GetById(int id)
         {
-            return GraphicsCard.FirstOrDefault(graphicCards => graphicCards.Id == id);
+            return GraphicsCards.FirstOrDefault(graphicCards => graphicCards.Id == id);
         }
 
         public void Delete(GraphicsCard graphicCards)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.GraphicCards.Remove(graphicCards);
+                dbContext.GraphicsCards.Remove(graphicCards);
                 dbContext.SaveChanges();
-                GraphicsCard.Remove(graphicCards); // Обновляем отображаемую коллекцию
+                GraphicsCards.Remove(graphicCards); // Обновляем отображаемую коллекцию
             }
         }
 
@@ -55,7 +55,7 @@ namespace PracticalWork.ViewModels
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.GraphicCards.Update(graphicCards);
+                dbContext.GraphicsCards.Update(graphicCards);
                 dbContext.SaveChanges();
             }
         }

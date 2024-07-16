@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace PracticalWork.ViewModels
 {
-    public class HardDriveViewModel : INotifyPropertyChanged
+    public class ComputerViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<HardDrive> _hardDrives;
-        public ObservableCollection<HardDrive> HardDrives
+        private ObservableCollection<Computer> _computers;
+        public ObservableCollection<Computer> Computers
         {
-            get { return _hardDrives; }
+            get { return _computers; }
             set
             {
-                _hardDrives = value;
-                OnPropertyChanged(nameof(HardDrive));
+                _computers = value;
+                OnPropertyChanged(nameof(Computers));
             }
         }
 
-        public HardDriveViewModel()
+        public ComputerViewModel()
         {
             LoadData();
         }
@@ -32,30 +32,30 @@ namespace PracticalWork.ViewModels
         {
             using (var dbContext = new AppDbContext())
             {
-                HardDrives = new ObservableCollection<HardDrive>(dbContext.HardDrives.ToList());
+                Computers = new ObservableCollection<Computer>(dbContext.Computers.ToList());
             }
         }
 
-        public HardDrive GetById(int id)
+        public Computer GetById(int id)
         {
-            return HardDrives.FirstOrDefault(powerSupply => powerSupply.Id == id);
+            return Computers.FirstOrDefault(comp => comp.Id == id);
         }
 
-        public void Delete(HardDrive powerSupply)
+        public void Delete(Computer comp)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.HardDrives.Remove(powerSupply);
+                dbContext.Computers.Remove(comp);
                 dbContext.SaveChanges();
-                HardDrives.Remove(powerSupply); // Обновляем отображаемую коллекцию
+                Computers.Remove(comp); // Обновляем отображаемую коллекцию
             }
         }
 
-        public void Update(HardDrive powerSupply)
+        public void Update(Computer comp)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.HardDrives.Update(powerSupply);
+                dbContext.Computers.Update(comp);
                 dbContext.SaveChanges();
             }
         }

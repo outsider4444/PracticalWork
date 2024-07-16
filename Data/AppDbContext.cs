@@ -6,7 +6,7 @@ namespace PracticalWork.Data
     public class AppDbContext : DbContext
     {
         public DbSet<Computer> Computers { get; set; }
-        public DbSet<GraphicsCard> GraphicCards { get; set; }
+        public DbSet<GraphicsCard> GraphicsCards { get; set; }
         public DbSet<HardDrive> HardDrives { get; set; }
         public DbSet<Processor> Processors { get; set; }
         public DbSet<PowerSupply> PowerSupplies { get; set; }

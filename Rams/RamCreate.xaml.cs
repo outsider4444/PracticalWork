@@ -29,6 +29,7 @@ namespace PracticalWork
         {
             InitializeComponent();
         }
+
         public RamCreate(Ram ram)
         {
             InitializeComponent();
@@ -53,7 +54,6 @@ namespace PracticalWork
             {
                 SaveRam();
             }
-
 
             RamViewModel DataContext = new RamViewModel();
             DataContext.LoadData();
@@ -83,7 +83,6 @@ namespace PracticalWork
             {
                 dbContext.Rams.Add(newRam);
                 dbContext.SaveChanges();
-
             }
 
             MessageBox.Show("ОЗУ успешно добавлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);

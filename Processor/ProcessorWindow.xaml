@@ -38,11 +38,11 @@
         <DataGrid x:Name="ProcessorDataGrid" Grid.Column="1" Grid.Row="1" Margin="10" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="ProcessorDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Модель" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Год" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Количество ядер" Binding="{Binding ProcessorId}"/>
-                <DataGridTextColumn Header="Тип памяти" Binding="{Binding GraphicsCardId}"/>
-                <DataGridTextColumn Header="Частота" Binding="{Binding PowerSupplyId}"/>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                <DataGridTextColumn Header="Год" Binding="{Binding Year}"/>
+                <DataGridTextColumn Header="Количество ядер" Binding="{Binding NumberOfCores}"/>
+                <DataGridTextColumn Header="Тип памяти" Binding="{Binding MemoryType}"/>
+                <DataGridTextColumn Header="Частота" Binding="{Binding Frequency}"/>
                 <DataGridTextColumn Header="Состояние" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>

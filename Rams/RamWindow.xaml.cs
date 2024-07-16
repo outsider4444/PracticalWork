@@ -55,7 +55,6 @@ namespace PracticalWork
                     DeleteBtn.IsEnabled = false;
                 }
             }
-
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -88,6 +87,41 @@ namespace PracticalWork
                 ramUpdate.Show();
                 this.Close();
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            HardDriveWindow hardDriveWindow = new HardDriveWindow();
+            hardDriveWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            PowerSupplyWindow power = new PowerSupplyWindow();
+            power.Show();
+            this.Close();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            GraphicsCardWindow graphicCardWindow = new GraphicsCardWindow();
+            graphicCardWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            ProcessorWindow processor = new ProcessorWindow();
+            processor.Show();
+            this.Close();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }

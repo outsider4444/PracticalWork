@@ -29,6 +29,7 @@ namespace PracticalWork
         {
             InitializeComponent();
         }
+
         public ProcessorCreate(Processor processor)
         {
             InitializeComponent();

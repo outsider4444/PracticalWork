@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PracticalWork.Models;
+using PracticalWork.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,72 @@ namespace PracticalWork
     /// </summary>
     public partial class PowerSupplyWindow : Window
     {
+        List<PowerSupply> powerSupplies;
         public PowerSupplyWindow()
         {
             InitializeComponent();
+
+            InitializeComponent();
+            PowerSupplyViewModel powerSupplyViewModel = new PowerSupplyViewModel();
+            powerSupplies = powerSupplyViewModel.PowerSupplies.ToList();
+            PowerSupplyDataGrid.ItemsSource = powerSupplies;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PowerSupplyCreate powerSupplyCreate = new PowerSupplyCreate();
+            powerSupplyCreate.Show();
+            this.Close();
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PowerSupplyViewModel DataContext = new PowerSupplyViewModel();
+            // Получаем выбранную запись из DataGrid
+            var selectedPowerSupply = (PowerSupply)PowerSupplyDataGrid.SelectedItem;
+
+            if (selectedPowerSupply != null)
+            {
+                // Удаляем запись из базы данных
+                DataContext.Delete(selectedPowerSupply);
+                MessageBox.Show("Блок питания успешно удален.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                DataContext.LoadData();
+                PowerSupplyDataGrid.ItemsSource = DataContext.PowerSupplies;
+            }
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PowerSupplyViewModel DataContext = new PowerSupplyViewModel();
+            // Получаем выбранную запись из DataGrid
+            var selectedPowerSupply = PowerSupplyDataGrid.SelectedItem as PowerSupply;
+
+            if (selectedPowerSupply != null)
+            {
+                PowerSupply powerSupply = DataContext.GetById(selectedPowerSupply.Id);
+                PowerSupplyCreate powerSupplyUpdate = new PowerSupplyCreate(powerSupply);
+                powerSupplyUpdate.Show();
+                this.Close();
+            }
+        }
+
+        private void PowerSupplyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PowerSupplyDataGrid.SelectedItem != null)
+            {
+                var selectedProduct = PowerSupplyDataGrid.SelectedItem as PowerSupply;
+                if (selectedProduct != null)
+                {
+                    UpdateBtn.IsEnabled = true;
+                    DeleteBtn.IsEnabled = true;
+                }
+                else
+                {
+                    UpdateBtn.IsEnabled = false;
+                    DeleteBtn.IsEnabled = false;
+                }
+            }
         }
     }
 }

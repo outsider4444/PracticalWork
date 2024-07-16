@@ -21,9 +21,13 @@ namespace PracticalWork
     /// </summary>
     public partial class ProcessorWindow : Window
     {
+        List<Processor> processors;
         public ProcessorWindow()
         {
             InitializeComponent();
+            ProcessorViewModel processorViewModel = new ProcessorViewModel();
+            processors = processorViewModel.Processors.ToList();
+            ProcessorDataGrid.ItemsSource = processors;
         }
 
         private void ProcessorDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -53,18 +57,33 @@ namespace PracticalWork
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            RamViewModel DataContext = new RamViewModel();
+            ProcessorViewModel DataContext = new ProcessorViewModel();
             // Получаем выбранную запись из DataGrid
-            var selectedRam = (Ram)RamDataGrid.SelectedItem;
+            var selectedProcessor = (Processor)ProcessorDataGrid.SelectedItem;
 
-            if (selectedRam != null)
+            if (selectedProcessor != null)
             {
                 // Удаляем запись из базы данных
-                DataContext.Delete(selectedRam);
-                MessageBox.Show("ОЗУ успешно удалена.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                DataContext.Delete(selectedProcessor);
+                MessageBox.Show("Процессор успешно удален.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 DataContext.LoadData();
-                RamDataGrid.ItemsSource = DataContext.Rams;
+                ProcessorDataGrid.ItemsSource = DataContext.Processors;
+            }
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessorViewModel DataContext = new ProcessorViewModel();
+            // Получаем выбранную запись из DataGrid
+            var selectedProcessor = ProcessorDataGrid.SelectedItem as Processor;
+
+            if (selectedProcessor != null)
+            {
+                Processor processor = DataContext.GetById(selectedProcessor.Id);
+                ProcessorCreate processorUpdate = new ProcessorCreate(processor);
+                processorUpdate.Show();
+                this.Close();
             }
         }
     }

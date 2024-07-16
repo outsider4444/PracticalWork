@@ -1,4 +1,6 @@
 ﻿using PracticalWork.Data;
+using PracticalWork.Models;
+using PracticalWork.ViewModels;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,32 +19,26 @@ namespace PracticalWork
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Computer> computers;
         public MainWindow()
         {
             InitializeComponent();
-            LoadData();
-        }
 
-        private void LoadData()
-        {
-            using (var context = new AppDbContext())
-            {
-                context.Database.EnsureCreated();
-                var computers = context.Computers.ToList();
-                InventoryDataGrid.ItemsSource = computers;
-            }
+            ComputerViewModel computerViewModel = new ComputerViewModel();
+            computers = computerViewModel.Computers.ToList();
+            ComputerDataGrid.ItemsSource = computers;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ProcessorWindow processorWindow = new ProcessorWindow();
-            processorWindow.Show();
+            ProcessorWindow processor = new ProcessorWindow();
+            processor.Show();
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            GraphicCardWindow graphicCardWindow = new GraphicCardWindow();
+            GraphicsCardWindow graphicCardWindow = new GraphicsCardWindow();
             graphicCardWindow.Show();
             this.Close();
         }
@@ -65,6 +61,63 @@ namespace PracticalWork
         {
             RamWindow ramWindow = new RamWindow();
             ramWindow.Show();
+            this.Close();
+        }
+
+        private void ComputerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComputerDataGrid.SelectedItem != null)
+            {
+                var selectedProduct = ComputerDataGrid.SelectedItem as Computer;
+                if (selectedProduct != null)
+                {
+                    UpdateBtn.IsEnabled = true;
+                    DeleteBtn.IsEnabled = true;
+                }
+                else
+                {
+                    UpdateBtn.IsEnabled = false;
+                    DeleteBtn.IsEnabled = false;
+                }
+            }
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ComputerViewModel DataContext = new ComputerViewModel();
+            // Получаем выбранную запись из DataGrid
+            var selectedComputer = (Computer)ComputerDataGrid.SelectedItem;
+
+            if (selectedComputer != null)
+            {
+                // Удаляем запись из базы данных
+                DataContext.Delete(selectedComputer);
+                MessageBox.Show("Компьютер успешно удален.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                DataContext.LoadData();
+                ComputerDataGrid.ItemsSource = DataContext.Computers;
+            }
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ComputerViewModel DataContext = new ComputerViewModel();
+            // Получаем выбранную запись из DataGrid
+            var selectedComputer = ComputerDataGrid.SelectedItem as Computer;
+
+            if (selectedComputer != null)
+            {
+                Computer comp = DataContext.GetById(selectedComputer.Id);
+                ComputerCreate compUpdate = new ComputerCreate(comp);
+                compUpdate.Show();
+                this.Close();
+            }
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ComputerCreate compCreate = new ComputerCreate();
+            compCreate.Show();
             this.Close();
         }
     }

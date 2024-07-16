@@ -1,0 +1,40 @@
+﻿<Window x:Class="PracticalWork.ComputerCreate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PracticalWork"
+        mc:Ignorable="d"
+        Title="ComputerCreate" Height="450" Width="800">
+    <Grid>
+        <Label Content="Состояние" HorizontalAlignment="Left" Margin="81,27,0,0" VerticalAlignment="Top" Width="112" Height="26"/>
+        <TextBox Name="Status" HorizontalAlignment="Left" Margin="81,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="Назначение" HorizontalAlignment="Left" Margin="259,27,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox Name="Purpose" HorizontalAlignment="Left" Margin="259,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="611,326,0,0" Width="132" Height="23" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="78,326,0,0" VerticalAlignment="Top" Width="161" Height="23" Click="Button_Click_1"/>
+
+        <Label Content="Описание" HorizontalAlignment="Left" Margin="442,27,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="Description" HorizontalAlignment="Left" Margin="442,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="301" Height="34"/>
+        <Label Content="Код процессора" HorizontalAlignment="Left" Margin="81,118,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="ProcessorId" HorizontalAlignment="Left" Margin="81,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Код видеокарты" HorizontalAlignment="Left" Margin="259,118,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="GraphicsCardId" HorizontalAlignment="Left" Margin="259,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Код блока питания" HorizontalAlignment="Left" Margin="442,118,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PowerSupplyId" HorizontalAlignment="Left" Margin="442,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Код жесткого диска" HorizontalAlignment="Left" Margin="623,118,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="HardDriveId" HorizontalAlignment="Left" Margin="623,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Код ОЗУ" HorizontalAlignment="Left" Margin="81,206,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="RamId" HorizontalAlignment="Left" Margin="81,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Мышка" HorizontalAlignment="Left" Margin="259,206,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="Mouse" HorizontalAlignment="Left" Margin="259,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Клавиатура" HorizontalAlignment="Left" Margin="442,206,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="Keyboard" HorizontalAlignment="Left" Margin="442,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Монитор" HorizontalAlignment="Left" Margin="623,206,0,0" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="Monitor" HorizontalAlignment="Left" Margin="623,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
