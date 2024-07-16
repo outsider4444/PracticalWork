@@ -13,4 +13,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Rams\RamCreate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
