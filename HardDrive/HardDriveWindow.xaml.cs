@@ -86,5 +86,40 @@ namespace PracticalWork
                 }
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ProcessorWindow processorWindow = new ProcessorWindow();
+            processorWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            GraphicsCardWindow graphicsCardWindow = new GraphicsCardWindow();
+            graphicsCardWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            PowerSupplyWindow powerSupplyWindow = new PowerSupplyWindow();
+            powerSupplyWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            RamWindow ramWindow = new RamWindow();
+            ramWindow.Show();
+            this.Close();
+        }
     }
 }

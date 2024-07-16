@@ -19,12 +19,12 @@
         <!-- Навигационное меню -->
         <StackPanel Grid.Column="0" Grid.RowSpan="2" Background="#EEE" Margin="5">
             <TextBlock Text="Меню" FontWeight="Bold" Margin="5"/>
-            <Button Content="Компьютеры" Width="180" Margin="5"/>
-            <Button Content="Процессоры" Width="180" Margin="5"/>
+            <Button Content="Компьютеры" Width="180" Margin="5" Click="Button_Click_1"/>
+            <Button Content="Процессоры" Width="180" Margin="5" Click="Button_Click_2"/>
             <Button Content="Видеокарты" Width="180" Margin="5" IsEnabled="False"/>
-            <Button Content="Блоки питания" Width="180" Margin="5"/>
-            <Button Content="Жесткие диски" Width="180" Margin="5"/>
-            <Button Content="ОЗУ" Width="180" Margin="5"/>
+            <Button Content="Блоки питания" Width="180" Margin="5" Click="Button_Click_3"/>
+            <Button Content="Жесткие диски" Width="180" Margin="5" Click="Button_Click_4"/>
+            <Button Content="ОЗУ" Width="180" Margin="5" Click="Button_Click_5"/>
         </StackPanel>
 
         <!-- Панель с кнопками -->
