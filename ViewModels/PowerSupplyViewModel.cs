@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace PracticalWork.ViewModels
 {
-    public class RamViewModel : INotifyPropertyChanged
+    public class PowerSupplyViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Ram> _rams;
-        public ObservableCollection<Ram> Rams
+        private ObservableCollection<PowerSupply> _powerSupplies;
+        public ObservableCollection<PowerSupply> PowerSupplies
         {
-            get { return _rams; }
+            get { return _powerSupplies; }
             set
             {
-                _rams = value;
-                OnPropertyChanged(nameof(Rams));
+                _powerSupplies = value;
+                OnPropertyChanged(nameof(PowerSupplies));
             }
         }
 
-        public RamViewModel()
+        public PowerSupplyViewModel()
         {
             LoadData();
         }
@@ -32,30 +32,30 @@ namespace PracticalWork.ViewModels
         {
             using (var dbContext = new AppDbContext())
             {
-                Rams = new ObservableCollection<Ram>(dbContext.Rams.ToList());
+                PowerSupplies = new ObservableCollection<PowerSupply>(dbContext.PowerSupplies.ToList());
             }
         }
 
-        public Ram GetById(int id)
+        public PowerSupply GetById(int id)
         {
-            return Rams.FirstOrDefault(ram => ram.Id == id);
+            return PowerSupplies.FirstOrDefault(powerSupply => powerSupply.Id == id);
         }
 
-        public void Delete(Ram ram)
+        public void Delete(PowerSupply powerSupply)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Remove(ram);
+                dbContext.PowerSupplies.Remove(powerSupply);
                 dbContext.SaveChanges();
-                Rams.Remove(ram); // Обновляем отображаемую коллекцию
+                PowerSupplies.Remove(powerSupply); // Обновляем отображаемую коллекцию
             }
         }
 
-        public void Update(Ram ram)
+        public void Update(PowerSupply powerSupply)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Update(ram);
+                dbContext.PowerSupplies.Update(powerSupply);
                 dbContext.SaveChanges();
             }
         }

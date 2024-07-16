@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace PracticalWork.ViewModels
 {
-    public class RamViewModel : INotifyPropertyChanged
+    public class GraphicsCardViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Ram> _rams;
-        public ObservableCollection<Ram> Rams
+        private ObservableCollection<GraphicsCard> _graphicsCards;
+        public ObservableCollection<GraphicsCard> GraphicsCard
         {
-            get { return _rams; }
+            get { return _graphicsCards; }
             set
             {
-                _rams = value;
-                OnPropertyChanged(nameof(Rams));
+                _graphicsCards = value;
+                OnPropertyChanged(nameof(GraphicsCard));
             }
         }
 
-        public RamViewModel()
+        public GraphicsCardViewModel()
         {
             LoadData();
         }
@@ -32,30 +32,30 @@ namespace PracticalWork.ViewModels
         {
             using (var dbContext = new AppDbContext())
             {
-                Rams = new ObservableCollection<Ram>(dbContext.Rams.ToList());
+                GraphicsCard = new ObservableCollection<GraphicsCard>(dbContext.GraphicCards.ToList());
             }
         }
 
-        public Ram GetById(int id)
+        public GraphicsCard GetById(int id)
         {
-            return Rams.FirstOrDefault(ram => ram.Id == id);
+            return GraphicsCard.FirstOrDefault(graphicCards => graphicCards.Id == id);
         }
 
-        public void Delete(Ram ram)
+        public void Delete(GraphicsCard graphicCards)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Remove(ram);
+                dbContext.GraphicCards.Remove(graphicCards);
                 dbContext.SaveChanges();
-                Rams.Remove(ram); // Обновляем отображаемую коллекцию
+                GraphicsCard.Remove(graphicCards); // Обновляем отображаемую коллекцию
             }
         }
 
-        public void Update(Ram ram)
+        public void Update(GraphicsCard graphicCards)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Update(ram);
+                dbContext.GraphicCards.Update(graphicCards);
                 dbContext.SaveChanges();
             }
         }

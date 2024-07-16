@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace PracticalWork.ViewModels
 {
-    public class RamViewModel : INotifyPropertyChanged
+    public class HardDriveViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Ram> _rams;
-        public ObservableCollection<Ram> Rams
+        private ObservableCollection<HardDrive> _hardDrives;
+        public ObservableCollection<HardDrive> HardDrive
         {
-            get { return _rams; }
+            get { return _hardDrives; }
             set
             {
-                _rams = value;
-                OnPropertyChanged(nameof(Rams));
+                _hardDrives = value;
+                OnPropertyChanged(nameof(HardDrive));
             }
         }
 
-        public RamViewModel()
+        public HardDriveViewModel()
         {
             LoadData();
         }
@@ -32,30 +32,30 @@ namespace PracticalWork.ViewModels
         {
             using (var dbContext = new AppDbContext())
             {
-                Rams = new ObservableCollection<Ram>(dbContext.Rams.ToList());
+                HardDrive = new ObservableCollection<HardDrive>(dbContext.HardDrives.ToList());
             }
         }
 
-        public Ram GetById(int id)
+        public HardDrive GetById(int id)
         {
-            return Rams.FirstOrDefault(ram => ram.Id == id);
+            return HardDrive.FirstOrDefault(powerSupply => powerSupply.Id == id);
         }
 
-        public void Delete(Ram ram)
+        public void Delete(HardDrive powerSupply)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Remove(ram);
+                dbContext.HardDrives.Remove(powerSupply);
                 dbContext.SaveChanges();
-                Rams.Remove(ram); // Обновляем отображаемую коллекцию
+                HardDrive.Remove(powerSupply); // Обновляем отображаемую коллекцию
             }
         }
 
-        public void Update(Ram ram)
+        public void Update(HardDrive powerSupply)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Update(ram);
+                dbContext.HardDrives.Update(powerSupply);
                 dbContext.SaveChanges();
             }
         }

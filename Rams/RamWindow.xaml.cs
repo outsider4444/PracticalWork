@@ -73,7 +73,6 @@ namespace PracticalWork
                 DataContext.LoadData();
                 RamDataGrid.ItemsSource = DataContext.Rams;
             }
-
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)

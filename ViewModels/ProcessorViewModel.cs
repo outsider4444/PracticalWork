@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace PracticalWork.ViewModels
 {
-    public class RamViewModel : INotifyPropertyChanged
+    public class ProcessorViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Ram> _rams;
-        public ObservableCollection<Ram> Rams
+        private ObservableCollection<Processor> _processors;
+        public ObservableCollection<Processor> Processors
         {
-            get { return _rams; }
+            get { return _processors; }
             set
             {
-                _rams = value;
-                OnPropertyChanged(nameof(Rams));
+                _processors = value;
+                OnPropertyChanged(nameof(Processors));
             }
         }
 
-        public RamViewModel()
+        public ProcessorViewModel()
         {
             LoadData();
         }
@@ -32,30 +32,30 @@ namespace PracticalWork.ViewModels
         {
             using (var dbContext = new AppDbContext())
             {
-                Rams = new ObservableCollection<Ram>(dbContext.Rams.ToList());
+                Processors = new ObservableCollection<Processor>(dbContext.Processors.ToList());
             }
         }
 
-        public Ram GetById(int id)
+        public Processor GetById(int id)
         {
-            return Rams.FirstOrDefault(ram => ram.Id == id);
+            return Processors.FirstOrDefault(processor => processor.Id == id);
         }
 
-        public void Delete(Ram ram)
+        public void Delete(Processor processor)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Remove(ram);
+                dbContext.Processors.Remove(processor);
                 dbContext.SaveChanges();
-                Rams.Remove(ram); // Обновляем отображаемую коллекцию
+                Processors.Remove(processor); // Обновляем отображаемую коллекцию
             }
         }
 
-        public void Update(Ram ram)
+        public void Update(Processor processor)
         {
             using (var dbContext = new AppDbContext())
             {
-                dbContext.Rams.Update(ram);
+                dbContext.Processors.Update(processor);
                 dbContext.SaveChanges();
             }
         }

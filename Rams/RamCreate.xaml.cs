@@ -109,5 +109,12 @@ namespace PracticalWork
             MessageBox.Show("ОЗУ успешно обновлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            RamWindow ramWindow = new RamWindow();
+            ramWindow.Show();
+            this.Close();
+        }
     }
 }

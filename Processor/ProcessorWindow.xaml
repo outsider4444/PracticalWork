@@ -29,13 +29,13 @@
 
         <!-- Панель с кнопками -->
         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10">
-            <Button Content="Добавить" Width="100" Margin="0,0,10,0"/>
-            <Button Content="Удалить" Width="100" Margin="0,0,10,0"/>
-            <Button Content="Редактировать" Width="100" Margin="0,0,10,0"/>
+            <Button Name="AddBtn" Content="Добавить" Width="100" Margin="0,0,10,0" Click="Button_Click"/>
+            <Button Name="DeleteBtn" Content="Удалить" Width="100" Margin="0,0,10,0" IsEnabled="False" Click="DeleteBtn_Click" />
+            <Button Name="UpdateBtn"  Content="Редактировать" Width="100" Margin="0,0,10,0" IsEnabled="False" Click="UpdateBtn_Click"/>
         </StackPanel>
 
         <!-- Таблица с данными -->
-        <DataGrid x:Name="InventoryDataGrid" Grid.Column="1" Grid.Row="1" Margin="10" AutoGenerateColumns="False" SelectionMode="Single">
+        <DataGrid x:Name="ProcessorDataGrid" Grid.Column="1" Grid.Row="1" Margin="10" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="ProcessorDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Модель" Binding="{Binding Name}"/>
